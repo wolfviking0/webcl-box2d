@@ -1,0 +1,1 @@
+When using Box2D OpenCL mode, the "restart" button is not functional and "changing demo" from the GUI is not supported. If you want to change a demo, please modify the value of "testIndex" in main.cpp to test the target demo. 
