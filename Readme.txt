@@ -1,19 +1,18 @@
-Box2D Version 2.1
+Welcome to Box2D-OpenCL
 
-Welcome to Box2D!
+We have accelerated the entire rigid body pipeline of Box2D 2.2.1 using OpenCL.  
+Please refer to the file Instruction.docx for detailed setup and build instructions.  
+Externally, the APIs of Box2D-OpenCL are identical to Box2D ver 2.2.1.  
+We have accelerated the following stages of the rigid body pipeline in Box2D-OpenCL:
 
-Box2D is a 2D physics engine for games.
+* Broad Phase
+* Narrow Phase
+* Solver 
 
-For help with Box2D, please visit http://www.box2d.org. There is a forum there where you may post your questions.
+We welcome comments and contributions from the community.  
 
-Please see Building.txt to learn how to build Box2D and run the testbed.
-
-To run the demos, set "Testbed" as your startup project and press F5. Some test bed commands are:
-- 'r' to reset the current test
-- SPACE to launch a bomb
-- arrow keys to pan
-- 'x' and 'z' to zoom in/out
-- use the mouse to click and drag objects
-
-Erin Catto
+For the sequential Box2D 2.2.1 implementation, please refer to:
 http://www.box2d.org
+
+Tasneem Brutch, Robert (Bo) Li, Guodong Rong
+
