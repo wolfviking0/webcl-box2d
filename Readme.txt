@@ -14,5 +14,5 @@ We welcome comments and contributions from the community.
 For the sequential Box2D 2.2.1 implementation, please refer to:
 http://www.box2d.org
 
-Tasneem Brutch, Robert (Bo) Li, Guodong Rong
+Tasneem Brutch, Bo Li, Guodong Rong
 
