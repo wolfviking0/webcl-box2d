@@ -42,13 +42,17 @@ b2CLSort::b2CLSort()
 #ifndef USE_CPU_SORT
 	// Load and create Bitonic Sort kernels from NVIDIA
     shrLog("...loading b2CLBitonicSort_NV.cl\n");
+
 #ifdef linux
-    sortKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
+    sortKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #elif defined (_WIN32)
-	sortKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
+    sortKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+    sortKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #else
     sortKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #endif
+    
 	if(sortKernelSource == NULL)
 	{
 		b2Log("Could not load program source, is path 'b2CLBitonicSort_NV.cl' correct?");
@@ -93,13 +97,17 @@ b2CLSort::b2CLSort()
 
 	// Load and create Bitonic Sort kernel from Intel
     shrLog("...loading b2CLBitonicSort_Intel.cl\n");
+
 #ifdef linux
-    sortKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);    
-#elif defined (_WIN32)    
-	sortKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);
+    sortKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);
+#elif defined (_WIN32)
+    sortKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+    sortKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #else
     sortKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #endif
+    
 	if(sortKernelSource == NULL)
 	{
 		b2Log("Could not load program source, is path 'b2CLBitonicSort_Intel.cl' correct?");

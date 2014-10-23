@@ -1125,6 +1125,8 @@ void b2CLCommonData::initReadLastJointImpulses()
     	commonDataSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLCommonData.cl", NULL), "// My comment\n", &commonDataSourceLen);
 	#elif defined (_WIN32)
 		commonDataSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLCommonData.cl", NULL), "// My comment\n", &commonDataSourceLen);
+    #elif defined (__EMSCRIPTEN__)
+        commonDataSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLCommonData.cl", NULL), "// My comment\n", &commonDataSourceLen);
 	#else
 		commonDataSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLCommonData.cl", NULL), "// My comment\n", &commonDataSourceLen);
 	#endif

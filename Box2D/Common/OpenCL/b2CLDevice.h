@@ -46,6 +46,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #   include <fstream>
 #   include <string>
 #   include <stdarg.h>
+#elif defined (__EMSCRIPTEN__)
+#include <CL/opencl.h>
+#include <stdlib.h>
+#include <fstream>
+#include <cstdarg>
 #endif
 
 #define BOX2D_OPENCL

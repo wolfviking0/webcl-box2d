@@ -34,19 +34,16 @@ b2CLBroadPhase::b2CLBroadPhase()
 		size_t broadPhaseSourceLen = 0;
 
 		shrLog("...loading b2CLBroadPhase.cl\n");
-    #ifdef linux
-    	broadPhaseSource = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
-	#elif defined (_WIN32)
-		broadPhaseSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
-	#else
-//        FILE * pFile;
-//        pFile = fopen ("/usr/local/include/Box2D/Common/OpenCL/b2CLBroadPhase.cl","r");
-//        if (pFile == NULL) {
-//            printf("fopen failed, errno = %d\n", errno);
-//        }
+#ifdef linux
+        broadPhaseSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
+#elif defined (_WIN32)
+        broadPhaseSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
+#elif defined (__EMSCRIPTEN__)
+        broadPhaseSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
+#else
+        broadPhaseSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
+#endif
         
-		broadPhaseSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
-	#endif
 		if(broadPhaseSource == NULL)
 		{
 			b2Log("Could not load program source, is path 'b2CLBroadPhase.cl' correct?");

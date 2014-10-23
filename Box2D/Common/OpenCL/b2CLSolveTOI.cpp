@@ -38,13 +38,14 @@ b2CLSolveTOI::b2CLSolveTOI()
     shrLog("...loading b2CLSolveTOI.cl\n");
 #ifdef linux
     TOIKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
-#elif defined (_WIN32)    
-	TOIKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
-#elif defined (__APPLE__)
-    TOIKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
+#elif defined (_WIN32)
+    TOIKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+    TOIKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
 #else
     TOIKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
 #endif
+    
 	if(TOIKernelSource == NULL)
 	{
 		b2Log("Could not load program source, is path 'b2CLSolveTOI.cl' correct?");

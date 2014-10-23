@@ -40,21 +40,29 @@ b2CLNarrowPhase::b2CLNarrowPhase()
 
 		shrLog("...loading b2CLNarrowPhase.cl\n");
 	#if defined(SCAN_OPENCL)
-    #ifdef linux
-    	narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
-	#elif defined (_WIN32)   
-		narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+
+#ifdef linux
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+#elif defined (_WIN32)
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+#else
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+#endif
+        
 	#else
-		narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
-	#endif
-	#else
-    #ifdef linux
-    	narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
-	#elif defined (_WIN32)
-		narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
-	#else
-		narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
-	#endif
+        
+#ifdef linux
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+#elif defined (_WIN32)
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+#else
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+#endif
+        
 	#endif
 		if(narrowPhaseKernelSource == NULL)
 		{

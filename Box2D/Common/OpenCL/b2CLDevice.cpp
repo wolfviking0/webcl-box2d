@@ -178,13 +178,17 @@ void b2CLDevice::initBitonicSort()
 	size_t kernelLength;    
     
 	shrLog("...loading BitonicSort_b.cl\n");
+
 #ifdef linux
-    char *cBitonicSort = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
-#elif defined (_WIN32)  
-	char *cBitonicSort = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
+    char* cBitonicSort = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
+#elif defined (_WIN32)
+    char* cBitonicSort = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
+#elif defined (__EMSCRIPTEN__)
+    char* cBitonicSort = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
 #else
-    char *cBitonicSort = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
+    char* cBitonicSort = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
 #endif
+    
 	if(cBitonicSort == NULL)
 	{
 		b2Log("Could not load program source, is path '../../Box2D/Common/OpenCL/BitonicSort_b.cl' correct?");

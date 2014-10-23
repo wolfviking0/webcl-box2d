@@ -47,23 +47,29 @@ b2CLSolver::b2CLSolver()
 		size_t sourceLen=0;
     
 	#if !defined(NARROWPHASE_OPENCL)
-    #ifdef linux
-    	source = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
-	#elif defined (_WIN32)
-		source = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
+        
+#ifdef linux
+        source = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
+#elif defined (_WIN32)
+        source = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
+#elif defined (__EMSCRIPTEN__)
+        source = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
+#else
+        source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
+#endif
+        
 	#else
-		source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
-	#endif
-	#else
-    #ifdef linux
-    	source = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
-	#elif defined (_WIN32)
-		source = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
-	#elif defined (__APPLE__)
-		source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
-	#else
-		source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
-	#endif
+        
+#ifdef linux
+        source = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
+#elif defined (_WIN32)
+        source = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
+#elif defined (__EMSCRIPTEN__)
+        source = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
+#else
+        source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
+#endif
+        
 	#endif
 		//printf("lqiu debug constraint solver source is \n %s \n",velocityConstraintSolverSource);
 		if(source == NULL)
@@ -360,15 +366,16 @@ b2CLSolver::b2CLSolver()
 		b2CLDevice::instance().getMaximumKernelWorkGroupSize(storeImpulsesKernel, maxWorkGroupSizeForStoreImpulsesKernel);
 	#endif
         
-    #ifdef linux
-        source = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
-	#elif defined (_WIN32)    
-		source = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
-	#elif defined (__APPLE__)
-		source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
-	#else
-		source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
-	#endif
+#ifdef linux
+        source = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
+#elif defined (_WIN32)
+        source = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
+#elif defined (__EMSCRIPTEN__)
+        source = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
+#else
+        source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
+#endif
+        
 		if(source == NULL)
 		{
 			b2Log("Could not load program source, is path 'b2CLIntegratePositions.cl' correct?");

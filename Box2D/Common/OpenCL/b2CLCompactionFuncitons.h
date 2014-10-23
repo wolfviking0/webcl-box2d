@@ -97,11 +97,17 @@ public:
         size_t scanKernelSourceLen=0;
     
         shrLog("...loading b2CLScanKernel.cl\n");
-#ifdef _WIN32    
+
+#ifdef linux
+        scanKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLScanKernel.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+#elif defined (_WIN32)
         scanKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLScanKernel.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+        scanKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLScanKernel.cl", NULL), "// My comment\n", &scanKernelSourceLen);
 #else
         scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLScanKernel.cl", NULL), "// My comment\n", &scanKernelSourceLen);
 #endif
+        
         if(scanKernelSource == NULL)
         {
             b2Log("Could not load program source, is path 'b2CLScanKernel.cl' correct?");

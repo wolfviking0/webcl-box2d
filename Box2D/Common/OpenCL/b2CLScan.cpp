@@ -47,15 +47,17 @@ b2CLScan::b2CLScan()
 
 	// Load kernels from Apple
     shrLog("...loading b2CLScan.cl\n");
+
 #ifdef linux
-    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLScan.cl", NULL), "// My comment\n", &scanKernelSourceLen);
-#elif defined (_WIN32)    
-	scanKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLScan.cl", NULL), "// My comment\n", &scanKernelSourceLen);
-#elif defined (__APPLE__)
-    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLScan.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLScan.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+#elif defined (_WIN32)
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLScan.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLScan.cl", NULL), "// My comment\n", &scanKernelSourceLen);
 #else
     scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLScan.cl", NULL), "// My comment\n", &scanKernelSourceLen);
 #endif
+    
 	if(scanKernelSource == NULL)
 	{
 		b2Log("Could not load program source, is path 'b2CLScan.cl' correct?");
@@ -100,15 +102,17 @@ b2CLScan::b2CLScan()
 
 	// Load kernels from CLPP
     shrLog("...loading b2CLScan_CLPP.cl\n");
+    
 #ifdef linux
-    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLScan_CLPP.cl", NULL), "// My comment\n", &scanKernelSourceLen);
-#elif defined (_WIN32)    
-	scanKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLScan_CLPP.cl", NULL), "// My comment\n", &scanKernelSourceLen);
-#elif defined (__APPLE__)
-    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLScan_CLPP.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLScan_CLPP.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+#elif defined (_WIN32)
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLScan_CLPP.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLScan_CLPP.cl", NULL), "// My comment\n", &scanKernelSourceLen);
 #else
     scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLScan_CLPP.cl", NULL), "// My comment\n", &scanKernelSourceLen);
 #endif
+    
 	if(scanKernelSource == NULL)
 	{
 		b2Log("Could not load program source, is path 'b2CLScan_CLPP.cl' correct?");
@@ -857,15 +861,17 @@ b2CLScanFloat4::b2CLScanFloat4()
     size_t scanKernelSourceLen = 0;
 
     shrLog("...loading b2CLPrefixScanFloat4.cl\n");
+    
 #ifdef linux
-    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/usr/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLPrefixScanFloat4.cl", NULL), "// My comment\n", &scanKernelSourceLen);
-#elif defined (_WIN32)    
-	scanKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLPrefixScanFloat4.cl", NULL), "// My comment\n", &scanKernelSourceLen);
-#elif defined (__APPLE__)
-    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLPrefixScanFloat4.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/opt/apps/com.samsung.browser/include/Box2D/Common/OpenCL/b2CLPrefixScanFloat4.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+#elif defined (_WIN32)
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("../../Box2D/Common/OpenCL/b2CLPrefixScanFloat4", NULL), "// My comment\n", &scanKernelSourceLen);
+#elif defined (__EMSCRIPTEN__)
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLPrefixScanFloat4", NULL), "// My comment\n", &scanKernelSourceLen);
 #else
-    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLPrefixScanFloat4.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+    scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLPrefixScanFloat4", NULL), "// My comment\n", &scanKernelSourceLen);
 #endif
+    
 	if(scanKernelSource == NULL)
 	{
 		b2Log("Could not load program source, is path 'b2CLPrefixScanFloat4.cl' correct?");
