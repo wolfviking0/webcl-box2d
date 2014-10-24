@@ -152,14 +152,81 @@ SOURCES_box2d = \
 				$(CURRENT_ROOT)/Box2D/Dynamics/Joints/b2WheelJoint.cpp \
 				$(CURRENT_ROOT)/Box2D/Rope/b2Rope.cpp \
 			
+SOURCES_glui = \
+				$(CURRENT_ROOT)/glui/algebra3.cpp \
+				$(CURRENT_ROOT)/glui/arcball.cpp \
+				$(CURRENT_ROOT)/glui/glui_add_controls.cpp \
+				$(CURRENT_ROOT)/glui/glui_bitmap_img_data.cpp \
+				$(CURRENT_ROOT)/glui/glui_bitmaps.cpp \
+				$(CURRENT_ROOT)/glui/glui_button.cpp \
+				$(CURRENT_ROOT)/glui/glui_checkbox.cpp \
+				$(CURRENT_ROOT)/glui/glui_column.cpp \
+				$(CURRENT_ROOT)/glui/glui_commandline.cpp \
+				$(CURRENT_ROOT)/glui/glui_control.cpp \
+				$(CURRENT_ROOT)/glui/glui_edittext.cpp \
+				$(CURRENT_ROOT)/glui/glui_filebrowser.cpp \
+				$(CURRENT_ROOT)/glui/glui_list.cpp \
+				$(CURRENT_ROOT)/glui/glui_listbox.cpp \
+				$(CURRENT_ROOT)/glui/glui_mouse_iaction.cpp \
+				$(CURRENT_ROOT)/glui/glui_node.cpp \
+				$(CURRENT_ROOT)/glui/glui_panel.cpp \
+				$(CURRENT_ROOT)/glui/glui_radio.cpp \
+				$(CURRENT_ROOT)/glui/glui_rollout.cpp \
+				$(CURRENT_ROOT)/glui/glui_rotation.cpp \
+				$(CURRENT_ROOT)/glui/glui_scrollbar.cpp \
+				$(CURRENT_ROOT)/glui/glui_separator.cpp \
+				$(CURRENT_ROOT)/glui/glui_spinner.cpp \
+				$(CURRENT_ROOT)/glui/glui_statictext.cpp \
+				$(CURRENT_ROOT)/glui/glui_string.cpp \
+				$(CURRENT_ROOT)/glui/glui_textbox.cpp \
+				$(CURRENT_ROOT)/glui/glui_translation.cpp \
+				$(CURRENT_ROOT)/glui/glui_tree.cpp \
+				$(CURRENT_ROOT)/glui/glui_treepanel.cpp \
+				$(CURRENT_ROOT)/glui/glui_window.cpp \
+				$(CURRENT_ROOT)/glui/glui.cpp \
+				$(CURRENT_ROOT)/glui/quaternion.cpp \
+
+SOURCES_freeglut = \
+				$(CURRENT_ROOT)/freeglut/freeglut_callbacks.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_cursor.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_display.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_ext.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_font_data.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_font.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_gamemode.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_geometry.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_glutfont_definitions.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_init.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_input_devices.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_joystick.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_main.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_menu.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_misc.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_overlay.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_spaceball.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_state.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_stroke_mono_roman.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_stroke_roman.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_structure.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_teapot.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_videoresize.c \
+				$(CURRENT_ROOT)/freeglut/freeglut_window.c \
 
 INCLUDES_helloworld = -I$(CURRENT_ROOT)
 
 SOURCES_helloworld = $(SOURCES_box2d) HelloWorld.cpp
 
+INCLUDES_testbed = -I$(CURRENT_ROOT)
+
+SOURCES_testbed = 	$(SOURCES_box2d) $(SOURCES_glui) $(SOURCES_freeglut) \
+					$(CURRENT_ROOT)/Testbed/Framework/Main.cpp \
+					$(CURRENT_ROOT)/Testbed/Framework/Render.cpp \
+					$(CURRENT_ROOT)/Testbed/Framework/Test.cpp \
+					$(CURRENT_ROOT)/Testbed/Tests/TestEntries.cpp \
+
 ifeq ($(NAT),0)
 
-KERNEL_helloworld		= \
+KERNEL_box2d		= \
 --preload-file Common/OpenCL/b2CLBitonicSort_Intel.cl \
 --preload-file Common/OpenCL/b2CLBitonicSort_NV.cl \
 --preload-file Common/OpenCL/b2CLBroadPhase.cl \
@@ -177,14 +244,16 @@ KERNEL_helloworld		= \
 --preload-file Common/OpenCL/BitonicSort_b.cl
 
 CFLAGS_helloworld		=	
+CFLAGS_testbed			=	
 
 VALPARAM_helloworld		=
+VALPARAM_testbed		=
 
-COPY_helloworld			=	mkdir -p Common/OpenCL && cp -rf $(CURRENT_ROOT)/Box2D/Common/OpenCL/*.cl Common/OpenCL/ &&
+COPY_box2d			=	mkdir -p Common/OpenCL && cp -rf $(CURRENT_ROOT)/Box2D/Common/OpenCL/*.cl Common/OpenCL/ &&
 
 else
 
-COPY_helloworld			=	mkdir -p $(BUILD_FOLDER)Common/OpenCL && cp -rf $(CURRENT_ROOT)/Box2D/Common/OpenCL/*.cl $(BUILD_FOLDER)Common/OpenCL/ &&
+COPY_box2d			=	mkdir -p $(BUILD_FOLDER)Common/OpenCL && cp -rf $(CURRENT_ROOT)/Box2D/Common/OpenCL/*.cl $(BUILD_FOLDER)Common/OpenCL/ &&
 
 endif
 
@@ -198,7 +267,7 @@ all_1: \
 	helloworld_sample
 
 all_2: \
-
+	testbed_sample
 
 all_3: \
 
@@ -209,7 +278,11 @@ mkdir:
 
 helloworld_sample: mkdir
 	$(call chdir,HelloWorld/)
-	$(COPY_helloworld) 	$(GLOBAL) $(CXX) $(CFLAGS) $(CFLAGS_helloworld) 	$(INCLUDES_helloworld) 	$(SOURCES_helloworld) 		$(VALPARAM_helloworld) 	$(KERNEL_helloworld) 		-o $(BUILD_FOLDER)$(PREFIX)helloworld$(EXTENSION) 
+	$(COPY_box2d) 	$(GLOBAL) $(CXX) $(CFLAGS) $(CFLAGS_helloworld) 	$(INCLUDES_helloworld) 	$(SOURCES_helloworld) 		$(VALPARAM_helloworld) 	$(KERNEL_box2d) 		-o $(BUILD_FOLDER)$(PREFIX)helloworld$(EXTENSION) 
+
+testbed_sample: mkdir
+	$(call chdir,TestBed/)
+	$(COPY_box2d) 	$(GLOBAL) $(CXX) $(CFLAGS) $(CFLAGS_testbed) 		$(INCLUDES_testbed) 	$(SOURCES_testbed) 			$(VALPARAM_testbed) 	$(KERNEL_box2d) 		-o $(BUILD_FOLDER)$(PREFIX)testbed$(EXTENSION) 
 
 clean:
 	rm -rf bin/
