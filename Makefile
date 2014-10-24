@@ -159,31 +159,32 @@ SOURCES_helloworld = $(SOURCES_box2d) HelloWorld.cpp
 
 ifeq ($(NAT),0)
 
-KERNEL_helloworld		= 
+KERNEL_helloworld		= \
+--preload-file Common/OpenCL/b2CLBitonicSort_Intel.cl \
+--preload-file Common/OpenCL/b2CLBitonicSort_NV.cl \
+--preload-file Common/OpenCL/b2CLBroadPhase.cl \
+--preload-file Common/OpenCL/b2CLCommonData.cl \
+--preload-file Common/OpenCL/b2CLNarrowPhase_Alone.cl \
+--preload-file Common/OpenCL/b2CLNarrowPhase.cl \
+--preload-file Common/OpenCL/b2CLPrefixScanFloat4.cl \
+--preload-file Common/OpenCL/b2CLScan_CLPP.cl \
+--preload-file Common/OpenCL/b2CLScan.cl \
+--preload-file Common/OpenCL/b2CLScanKernel.cl \
+--preload-file Common/OpenCL/b2CLSolvePositionConstraint.cl \
+--preload-file Common/OpenCL/b2CLSolveTOI.cl \
+--preload-file Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl \
+--preload-file Common/OpenCL/b2CLSolveVelocityConstraint.cl \
+--preload-file Common/OpenCL/BitonicSort_b.cl
 
 CFLAGS_helloworld		=	
 
 VALPARAM_helloworld		=
 
+COPY_helloworld			=	mkdir -p Common/OpenCL && cp -rf $(CURRENT_ROOT)/Box2D/Common/OpenCL/*.cl Common/OpenCL/ &&
+
 else
 
 COPY_helloworld			=	mkdir -p $(BUILD_FOLDER)Common/OpenCL && cp -rf $(CURRENT_ROOT)/Box2D/Common/OpenCL/*.cl $(BUILD_FOLDER)Common/OpenCL/ &&
-
-# b2CLBitonicSort_Intel.cl
-# b2CLBitonicSort_NV.cl
-# b2CLBroadPhase.cl
-# b2CLCommonData.cl
-# b2CLNarrowPhase_Alone.cl
-# b2CLNarrowPhase.cl
-# b2CLPrefixScanFloat4.cl
-# b2CLScan_CLPP.cl
-# b2CLScan.cl
-# b2CLScanKernel.cl
-# b2CLSolvePositionConstraint.cl
-# b2CLSolveTOI.cl
-# b2CLSolveVelocityConstraint_Alone.cl
-# b2CLSolveVelocityConstraint.cl
-# BitonicSort_b.cl
 
 endif
 

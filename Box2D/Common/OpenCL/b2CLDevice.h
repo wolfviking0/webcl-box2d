@@ -101,6 +101,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #define OPENCL_BUILD_PATH "-I Box2D/Common/OpenCL/"
 #elif defined(__APPLE__)
 #define OPENCL_BUILD_PATH "-I /usr/local/include/"
+#elif defined(__EMSCRIPTEN__)
+#define OPENCL_BUILD_PATH ""
 #else
 //#define OPENCL_BUILD_PATH "-I ../../Box2D/Common/OpenCL/"
 #define OPENCL_BUILD_PATH "-I ../../"

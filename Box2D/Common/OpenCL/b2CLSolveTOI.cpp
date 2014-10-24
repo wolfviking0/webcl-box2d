@@ -43,7 +43,7 @@ b2CLSolveTOI::b2CLSolveTOI()
 #elif defined (__EMSCRIPTEN__)
     TOIKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
 #else
-    TOIKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
+    TOIKernelSource = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLSolveTOI.cl", NULL), "// My comment\n", &TOIKernelSourceLen);
 #endif
     
 	if(TOIKernelSource == NULL)

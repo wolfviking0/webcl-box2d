@@ -186,7 +186,7 @@ void b2CLDevice::initBitonicSort()
 #elif defined (__EMSCRIPTEN__)
     char* cBitonicSort = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
 #else
-    char* cBitonicSort = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
+    char* cBitonicSort = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/BitonicSort_b.cl", NULL), "// My comment\n", &kernelLength);
 #endif
     
 	if(cBitonicSort == NULL)

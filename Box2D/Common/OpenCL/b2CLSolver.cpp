@@ -55,7 +55,7 @@ b2CLSolver::b2CLSolver()
 #elif defined (__EMSCRIPTEN__)
         source = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
 #else
-        source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
+        source = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLSolveVelocityConstraint_Alone.cl", NULL), "// My comment\n", &sourceLen);
 #endif
         
 	#else
@@ -67,7 +67,7 @@ b2CLSolver::b2CLSolver()
 #elif defined (__EMSCRIPTEN__)
         source = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
 #else
-        source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
+        source = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLSolveVelocityConstraint.cl", NULL), "// My comment\n", &sourceLen);
 #endif
         
 	#endif
@@ -373,7 +373,7 @@ b2CLSolver::b2CLSolver()
 #elif defined (__EMSCRIPTEN__)
         source = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
 #else
-        source = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
+        source = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLSolvePositionConstraint.cl", NULL), "// My comment\n", &sourceLen);
 #endif
         
 		if(source == NULL)

@@ -50,7 +50,7 @@ b2CLSort::b2CLSort()
 #elif defined (__EMSCRIPTEN__)
     sortKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #else
-    sortKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
+    sortKernelSource = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLBitonicSort_NV.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #endif
     
 	if(sortKernelSource == NULL)
@@ -105,7 +105,7 @@ b2CLSort::b2CLSort()
 #elif defined (__EMSCRIPTEN__)
     sortKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #else
-    sortKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);
+    sortKernelSource = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLBitonicSort_Intel.cl", NULL), "// My comment\n", &sortKernelSourceLen);
 #endif
     
 	if(sortKernelSource == NULL)

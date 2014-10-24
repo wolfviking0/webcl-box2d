@@ -41,7 +41,7 @@ b2CLBroadPhase::b2CLBroadPhase()
 #elif defined (__EMSCRIPTEN__)
         broadPhaseSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
 #else
-        broadPhaseSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
+        broadPhaseSource = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLBroadPhase.cl", NULL), "// My comment\n", &broadPhaseSourceLen);
 #endif
         
 		if(broadPhaseSource == NULL)

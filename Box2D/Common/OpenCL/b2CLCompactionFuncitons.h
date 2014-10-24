@@ -105,7 +105,7 @@ public:
 #elif defined (__EMSCRIPTEN__)
         scanKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLScanKernel.cl", NULL), "// My comment\n", &scanKernelSourceLen);
 #else
-        scanKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLScanKernel.cl", NULL), "// My comment\n", &scanKernelSourceLen);
+        scanKernelSource = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLScanKernel.cl", NULL), "// My comment\n", &scanKernelSourceLen);
 #endif
         
         if(scanKernelSource == NULL)

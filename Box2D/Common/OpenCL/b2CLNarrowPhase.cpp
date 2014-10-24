@@ -48,7 +48,7 @@ b2CLNarrowPhase::b2CLNarrowPhase()
 #elif defined (__EMSCRIPTEN__)
         narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
 #else
-        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLNarrowPhase.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
 #endif
         
 	#else
@@ -60,7 +60,7 @@ b2CLNarrowPhase::b2CLNarrowPhase()
 #elif defined (__EMSCRIPTEN__)
         narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("./Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
 #else
-        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("/usr/local/include/Box2D/Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
+        narrowPhaseKernelSource = b2clLoadProgSource(shrFindFilePath("../../../Box2D/Common/OpenCL/b2CLNarrowPhase_Alone.cl", NULL), "// My comment\n", &narrowPhaseKernelSourceLen);
 #endif
         
 	#endif
